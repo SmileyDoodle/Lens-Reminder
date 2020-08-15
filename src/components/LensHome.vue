@@ -1,15 +1,17 @@
 <template>
-  <div class="lensHome">
-      <div class="logo-box column">
+  <div class="lensHome columns is-mobile is-centered">
+    <div  class="column is-two-thirds">
+      <div class="logo-box ">
         <img class="logo-wrap" src="../assets/images/logo.png" alt="logo">
       </div>
-      <div class="eyes-box column">
+      <div class="eyes-box ">
         <img class="eyes-wrap" src="../assets/images/eyes.png" alt="eyes">
       </div>
       <div>
           <LoginButton></LoginButton>
-          <RegisterButton></RegisterButton>
+          <RegisterButton class="aRegister"></RegisterButton>
       </div>
+    </div>
   </div>
 </template>
 
@@ -28,8 +30,9 @@ export default {
 
 <style>
 .lensHome {
-    display: grid;
+    /* display: grid; */
     justify-content: center;
+    margin: 0;
 }
 .logo-box {
     height: 100px;
@@ -42,5 +45,9 @@ export default {
 }
 .eyes-wrap {
     height: 220px;
+    padding-bottom: 1rem;
+}
+.aRegister a {
+  color: #2f3a4d;
 }
 </style>

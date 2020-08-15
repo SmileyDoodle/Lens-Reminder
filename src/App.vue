@@ -1,16 +1,25 @@
+
 <template>
   <div id="app">
-    <Home></Home>
+      <!-- <Home></Home> -->
+      <!-- <router-link to="/">Home</router-link> |
+      <router-link to="/about">About</router-link> -->
+    <Header></Header>
+    <router-view/>
+    <Footer></Footer>
   </div>
 </template>
 
 <script>
-import Home from './components/Home.vue'
+// import Home from './views/Home.vue'
+import Header from './components/Header.vue'
+import Footer from './components/Footer.vue'
 
 export default {
   name: 'App',
   components: {
-    Home
+    Header,
+    Footer
   }
 }
 </script>
@@ -27,5 +36,8 @@ body {
   text-align: center;
   color: #2c3e50;
   margin: 0;
+  display: grid;
+  height: 93vh;
+  grid-template-rows: auto 1fr auto;
 }
 </style>
