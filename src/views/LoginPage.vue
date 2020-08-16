@@ -13,7 +13,7 @@
           name="password"
           placeholder="Password"
         />
-        <LoginButton></LoginButton>
+        <LoginButton :toURL="'/information'"></LoginButton>
       </form>
     </div>
   </div>

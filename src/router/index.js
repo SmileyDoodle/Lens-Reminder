@@ -22,6 +22,16 @@ Vue.use(VueRouter)
     path: '/register',
     name: 'RegisterPage',
     component: () => import(/* webpackChunkName: "about" */ '../views/RegisterPage.vue')
+  },
+  {
+    path: '/information',
+    name: 'InformationPage',
+    component: () => import(/* webpackChunkName: "about" */ '../views/InformationPage.vue')
+  },
+  {
+    path: '/edit',
+    name: 'EditPage',
+    component: () => import(/* webpackChunkName: "about" */ '../views/EditPage.vue')
   }
 ]
 

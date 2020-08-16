@@ -1,22 +1,18 @@
 <template>
-  <!-- <div class="columns is-mobile is-centered">
-    <div class="column is-two-thirds"> -->
-        <button class="register button is-rounded">
-          <router-link to="/register">Register</router-link>
-        </button>
-    <!-- </div>
-  </div> -->
+    <router-link :to="toURL" tag="button" class="register button is-rounded" v-if="toURL">
+      Register
+    </router-link>
 </template>
 
 <script>
 export default {
   name: 'RegisterButton',
+  props: ['toURL']
 }
 </script>
 
 <style>
 .register {
     width: 100%;
-    /* margin-top: 0.5rem; */
 }
 </style>

@@ -18,7 +18,7 @@
           name="password"
           placeholder="Repeat password"
         />
-        <RegisterButton class="bRegister"></RegisterButton>
+        <RegisterButton :toURL="'/information'" class="bRegister"></RegisterButton>
       </form>
     </div>
   </div>
@@ -53,8 +53,6 @@ input {
 }
 .bRegister {
   background-color: #2f3a4d;
-}
-.bRegister a {
   color: #fff;
 }
 </style>

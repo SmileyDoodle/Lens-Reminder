@@ -8,8 +8,8 @@
         <img class="eyes-wrap" src="../assets/images/eyes.png" alt="eyes">
       </div>
       <div>
-          <LoginButton></LoginButton>
-          <RegisterButton class="aRegister"></RegisterButton>
+          <LoginButton :toURL="'/login'"></LoginButton>
+          <RegisterButton :toURL="'/register'" class="aRegister"></RegisterButton>
       </div>
     </div>
   </div>
