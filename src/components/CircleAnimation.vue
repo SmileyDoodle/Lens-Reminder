@@ -11,6 +11,11 @@ export default {
     name: 'CircleAnimation',
     methods: {
         createCircle() {
+            var count = 0;
+            if(window) {
+              count = window.localStorage.getItem('day');
+            }
+            
             var bar = new ProgressBar.Circle('#container', {
             color: '#aaa',
             // This has to be the same size as the maximum width to
@@ -29,7 +34,7 @@ export default {
                 circle.path.setAttribute('stroke', state.color);
                 circle.path.setAttribute('stroke-width', state.width);
 
-                var value = Math.round(circle.value() * 100);
+                var value = Math.round(circle.value() * count);
                 if (value === 0) {
                 circle.setText('');
                 } else {

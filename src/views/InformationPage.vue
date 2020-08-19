@@ -4,8 +4,8 @@
       <h1>Days left</h1>
       <CircleAnimation></CircleAnimation>
       <div class="info-wrap">
-          <p>Put new:</p>
-          <p>Change:</p>
+          <p>Put new: {{date}} </p>
+          <p>Change: {{newDate}} </p>
       </div>
       <router-link to="/edit" tag="button" class="info button is-rounded">
         Edit
@@ -16,12 +16,30 @@
 
 <script>
 import CircleAnimation from '../components/CircleAnimation.vue'
+import moment from 'moment';
 
 export default {
   name: 'InformationPage',
   components: {
     CircleAnimation
-  }
+  },
+  computed: {
+    // eslint-disable-next-line vue/return-in-computed-property
+    date() {
+      if(window) {
+        var date = moment(window.localStorage.getItem('date')).format('MMMM Do');
+        return date;
+      }
+    },
+    // eslint-disable-next-line vue/return-in-computed-property
+    newDate() {
+      if(window) {
+          var newDate = moment(this.date, 'MMMM Do').add(window.localStorage.getItem('day'), "days").format('MMMM Do');
+          console.log('newDate', newDate);
+          return newDate;
+      }
+    }
+  },
 }
 </script>
 
