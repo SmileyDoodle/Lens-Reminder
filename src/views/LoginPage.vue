@@ -7,25 +7,51 @@
           class="button is-rounded column"
           name="email"
           placeholder="Email"
+          v-model="email"
         />
         <input
           class="button is-rounded column"
           name="password"
+          type="password"
           placeholder="Password"
+          v-model="password"
         />
-        <LoginButton :toURL="'/information'"></LoginButton>
+        <!-- <LoginButton @click="login" :toURL="'/information'"></LoginButton> -->
+        <button @click="login" type="button">Login</button>
       </form>
+      <p>Need an account? <router-link to="/register">Register</router-link> </p>
     </div>
   </div>
 </template>
 
 <script>
-import LoginButton from '../components/LoginButton.vue'
+// import LoginButton from '../components/LoginButton.vue'
+import firebase from 'firebase'
 
 export default {
   name: 'LoginPage',
-  components: {
-    LoginButton
+  // components: {
+  //   LoginButton
+  // },
+  data() {
+    return {
+      email: "",
+      password: ""
+    }
+  },
+  methods: {
+    login() {
+      firebase.auth().signInWithEmailAndPassword(this.email, this.password).
+        then (
+          user => {
+            console.log(user);
+            this.$router.push({ path: 'information' });
+          }
+        ),
+        err => {
+          console.log(err);
+        }
+    }
   }
 }
 </script>

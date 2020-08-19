@@ -1,5 +1,5 @@
 <template>
-  <div class="login columns is-mobile is-centered">
+  <div class="register columns is-mobile is-centered">
     <div  class="column is-two-thirds">
       <h1>Hello</h1>
       <form>
@@ -7,19 +7,28 @@
           class="button is-rounded column"
           name="email"
           placeholder="Email"
+          v-model="email"
         />
         <input
           class="button is-rounded column"
           name="password"
+          type="password"
           placeholder="Password"
+          v-model="password"
         />
         <input
           class="button is-rounded column"
           name="password"
+          type="password"
           placeholder="Repeat password"
         />
-        <RegisterButton :toURL="'/information'" class="bRegister"></RegisterButton>
+        <RegisterButton @clicked="register" class="bRegister"></RegisterButton>
       </form>
+      <p>Have an account? <router-link to="/login">Login</router-link> </p>
+      <div v-if="secret">
+        <p> email: john.doe@gmail.com </p>
+        <p> password: abc123 </p>
+      </div>
     </div>
   </div>
 </template>
@@ -31,7 +40,19 @@ export default {
   name: 'RegisterPage',
   components: {
     RegisterButton
-  }
+  },
+  data() {
+    return {
+      email: "",
+      password: "",
+      secret: false
+    }
+  },
+  methods: {
+    register() {
+        this.secret = true;
+    }
+  },
 }
 </script>
 
@@ -39,12 +60,12 @@ export default {
 .button {
   width: 100%;
 }
-.login {
+.register {
   display: grid;
   justify-content: center;
   margin: 0;
 }
-.login h1 {
+.register h1 {
   font-size: 2rem;
   padding: 2rem 0 4rem; 
 }

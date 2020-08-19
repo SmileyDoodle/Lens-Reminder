@@ -1,13 +1,12 @@
 <template>
-    <router-link :to="toURL" tag="button" class="register button is-rounded" v-if="toURL">
+    <button type="button" class="register button is-rounded" @click="$emit('clicked')">
       Register
-    </router-link>
+    </button>
 </template>
 
 <script>
 export default {
-  name: 'RegisterButton',
-  props: ['toURL']
+  name: 'RegisterButton'
 }
 </script>
 

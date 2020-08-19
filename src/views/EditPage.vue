@@ -1,7 +1,6 @@
 <template>
   <div class="edit columns is-mobile is-centered">
     <div  class="column is-two-thirds">
-      <h1>Hello</h1>
       <form>
         <p>Put new lens on:</p>
         <input
@@ -23,17 +22,17 @@
         </div>
 
       </form>
-          <!-- <router-link
+          <router-link
             tag="button" 
             class="editButton button is-rounded"
             @click="fetchData()"
             to="/information"
           >
             <img src="../assets/images/add.svg" alt=""> 
-          </router-link> -->
+          </router-link>
 
-        <button class="editButton button is-rounded" type="button" @click="fetchData()"> <img src="../assets/images/add.svg" alt=""> </button>
-        <button class="editButton button is-rounded"> <img src="../assets/images/clear.svg" alt=""> </button>
+        <!-- <button class="editButton button is-rounded" type="button" @click="fetchData()"> <img src="../assets/images/add.svg" alt=""> </button> -->
+        <!-- <button class="editButton button is-rounded"> <img src="../assets/images/clear.svg" alt=""> </button> -->
     </div>
   </div>
 </template>
@@ -64,6 +63,16 @@ export default {
             
           }
         }
+    },
+    mounted() {
+        this.fetchData();
+    },
+    updated: function () {
+        this.$nextTick(function () {
+            this.fetchData();
+            // Code that will run only after the
+            // entire view has been re-rendered
+        })
     }
 }
 </script>
