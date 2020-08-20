@@ -1,17 +1,12 @@
 <template>
-  <!-- <div class="columns is-mobile is-centered">
-    <div class="column is-two-thirds"> -->
-      <router-link :to="toURL"  tag="button" class="loginButton button is-rounded">
+      <button type="button" class="loginButton button is-rounded" @click="$emit('clicked')">
         Login
-      </router-link>
-    <!-- </div>
-  </div> -->
+      </button>
 </template>
 
 <script>
 export default {
-  name: 'LoginButton',
-  props: ['toURL']
+  name: 'LoginButton', 
 }
 </script>
 

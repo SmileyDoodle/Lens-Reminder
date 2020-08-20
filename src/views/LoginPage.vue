@@ -2,7 +2,7 @@
   <div class="login columns is-mobile is-centered">
     <div  class="column is-two-thirds">
       <h1>Hello</h1>
-      <form>
+      <form autocomplete="off">
         <input
           class="button is-rounded column"
           name="email"
@@ -16,23 +16,23 @@
           placeholder="Password"
           v-model="password"
         />
-        <!-- <LoginButton @click="login" :toURL="'/information'"></LoginButton> -->
-        <button @click="login" type="button">Login</button>
+        <LoginButton @clicked="login" class="loginButton"></LoginButton>
+        <!-- <button @click="login" type="button">Login</button> -->
       </form>
-      <p>Need an account? <router-link to="/register">Register</router-link> </p>
+      <p>Need an account? <router-link to="/register" class="account">Register</router-link> </p>
     </div>
   </div>
 </template>
 
 <script>
-// import LoginButton from '../components/LoginButton.vue'
+import LoginButton from '../components/LoginButton.vue'
 import firebase from 'firebase'
 
 export default {
   name: 'LoginPage',
-  // components: {
-  //   LoginButton
-  // },
+  components: {
+    LoginButton
+  },
   data() {
     return {
       email: "",
@@ -71,5 +71,8 @@ export default {
 }
 input {
   margin-bottom: 0.5rem !important;
+}
+.loginButton {
+  margin-bottom: 1rem !important;
 }
 </style>

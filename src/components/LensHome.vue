@@ -8,23 +8,17 @@
         <img class="eyes-wrap" src="../assets/images/eyes.png" alt="eyes">
       </div>
       <div>
-          <LoginButton :toURL="'/login'"></LoginButton>
-          <RegisterButton :toURL="'/register'" class="aRegister"></RegisterButton>
+          <router-link to="/login" class="loginButton button is-rounded">Login</router-link>
+          <router-link to="/register" class="registerButton button is-rounded">Register</router-link>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import LoginButton from '../components/LoginButton.vue'
-import RegisterButton from '../components/RegisterButton.vue'
 
 export default {
   name: 'LensHome',
-  components: {
-    LoginButton,
-    RegisterButton
-  }
 }
 </script>
 
@@ -47,7 +41,14 @@ export default {
     height: 220px;
     padding-bottom: 1rem;
 }
-.aRegister a {
+.loginButton {
+  background-color: #2f3a4d;
+  color: #fff;
+  width: 100%;
+  margin-bottom: 0.5rem;
+}
+.registerButton {
   color: #2f3a4d;
+  width: 100%;
 }
 </style>
