@@ -1,9 +1,6 @@
 
 <template>
   <div id="app">
-      <!-- <Home></Home> -->
-      <!-- <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link> -->
     <Header></Header>
     <router-view/>
     <Footer></Footer>
@@ -20,7 +17,12 @@ export default {
   components: {
     Header,
     Footer
-  }
+  },
+   data() {
+    return {
+      login: true,
+    }
+  },
 }
 </script>
 

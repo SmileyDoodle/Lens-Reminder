@@ -17,7 +17,6 @@
           v-model="password"
         />
         <LoginButton @clicked="login" class="loginButton"></LoginButton>
-        <!-- <button @click="login" type="button">Login</button> -->
       </form>
       <p>Need an account? <router-link to="/register" class="account">Register</router-link> </p>
     </div>
@@ -45,7 +44,11 @@ export default {
         then (
           user => {
             console.log(user);
-            this.$router.push({ path: 'information' });
+            if (window.localStorage.getItem('date') === null || window.localStorage.getItem('day') === null) {
+              this.$router.push({ path: 'edit' });
+            } else {
+              this.$router.push({ path: 'information' });
+            }
           }
         ),
         err => {
