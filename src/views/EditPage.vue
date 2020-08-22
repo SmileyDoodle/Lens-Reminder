@@ -28,7 +28,7 @@
             @click="fetchData()"
             to="/information"
           >
-            <img src="../assets/images/add.svg" alt=""> 
+            <img src="../assets/images/add.svg" alt="add"> 
           </router-link>
 
     </div>

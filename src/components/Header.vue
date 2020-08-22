@@ -1,29 +1,48 @@
 <template>
   <header>
       <nav class="navbar" role="navigation" aria-label="main navigation">
-        <div 
-          class="navbar-brand" 
-          v-show="$route.path==='/' || $route.path==='/register' || $route.path==='/login' ? false : true"
-        >
-           <a class="navbar-item" href="/">
-            <img src="../assets/images/logo.png" alt="logo" height="28">
-           </a>
-          
-            <div class="navbar-burger" @click="showNav = !showNav" :class="{ 'is-active': showNav }">
-              <span></span>
-              <span></span>
-              <span></span>
-            </div>
+          <div 
+            class="navbar-brand level" 
+            v-show="$route.path==='/' || $route.path==='/register' || $route.path==='/login' ? false : true"
+          >
+              <div class="level-item">
+                <router-link 
+                  to="/information"
+                >
+                  <img 
+                    class="arrow" 
+                    src="../assets/images/arrow.svg" 
+                    alt="back"  
+                    :class="{'isHidden': ($route.path !=='/edit' && $route.path !=='/about')}"
+                  > 
+                </router-link>
+              </div>
+              <div class="level-item" >
+                <a class="navbar-item">
+                  <img src="../assets/images/logo.png" alt="logo" height="28">
+                </a>
+              </div>
+              <div class="level-item">
+                <div class="navbar-burger" @click="showNav = !showNav" :class="{ 'is-active': showNav }">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+              </div>
           </div>
           <!--
           Using the v-bind: directive to reactively update the class attribute 'is-active' based on the showNav property.
           -->
-          <div class="navbar-menu" :class="{ 'is-active': showNav }">
+          <div 
+            class="navbar-menu" 
+            :class="{ 'is-active': showNav }"
+            v-show="$route.path==='/' || $route.path==='/register' || $route.path==='/login' ? false : true"  
+          >
             <div class="navbar-end">
-              <a class="navbar-item" href="/about">
+              <a class="navbar-item" @click="redirect()">
                 About
               </a>
-              <a class="navbar-item" href="/">
+              <a class="navbar-item" @click="logout()">
                 Logout
               </a>
             </div>
@@ -33,11 +52,28 @@
 </template>
 
 <script>
+import firebase from 'firebase'
+
 export default {
   name: 'Header',
   data() {
     return {
       showNav: false
+    }
+  },
+  methods: {
+    redirect() {
+        this.$router.push('/about')
+        this.showNav = !this.showNav
+    },
+    logout() {
+      firebase.auth().signOut().then(() => {
+        // Sign-out successful.
+        this.$router.go('/')
+      }),
+      err => {
+          console.log(err);
+        }
     }
   }
 }
@@ -45,7 +81,13 @@ export default {
 
 <style>
 header {
-    padding: 1rem 2rem;
+  padding: 1rem 2rem;
+}
+.arrow {
+  height: 28px;
+}
+.level-item {
+  margin-bottom: 0 !important;
 }
 .navbar {
   background-color: #eaded2;
@@ -54,6 +96,11 @@ header {
   background-color: #eaded2;
 }
 .navbar-menu {
-  opacity: 0.5;
+  position: absolute;
+  width: 100%;
+  opacity: 0.95;
+}
+.isHidden {
+  visibility: hidden;
 }
 </style>

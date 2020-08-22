@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import firebase from 'firebase'
 
 Vue.use(VueRouter)
 
@@ -26,17 +27,20 @@ Vue.use(VueRouter)
   {
     path: '/information',
     name: 'InformationPage',
-    component: () => import(/* webpackChunkName: "about" */ '../views/InformationPage.vue')
+    component: () => import(/* webpackChunkName: "about" */ '../views/InformationPage.vue'),
+    meta: { requiresAuth: true }
   },
   {
     path: '/edit',
     name: 'EditPage',
-    component: () => import(/* webpackChunkName: "about" */ '../views/EditPage.vue')
+    component: () => import(/* webpackChunkName: "about" */ '../views/EditPage.vue'),
+    meta: { requiresAuth: true }
   },
   {
     path: '/about',
     name: 'AboutPage',
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutPage.vue')
+    component: () => import(/* webpackChunkName: "about" */ '../views/AboutPage.vue'),
+    meta: { requiresAuth: true }
   }
 ]
 
@@ -45,5 +49,16 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 })
-
+router.beforeEach((to, from, next) => {
+  const requiresAuth = to.matched.some(record => record.meta.requiresAuth)
+  const isAuthenticated = firebase.auth().currentUser
+  if(isAuthenticated && to.path === '/') {
+    next('/edit')
+  }
+  if (requiresAuth && !isAuthenticated) {
+    next('/login')
+  } else {
+    next()
+  }
+})
 export default router
