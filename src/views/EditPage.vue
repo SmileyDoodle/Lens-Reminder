@@ -2,14 +2,14 @@
   <div class="edit columns is-mobile is-centered">
     <div  class="column is-two-thirds">
       <form>
-        <p>Put new lens on:</p>
+        <p class="p-wrap">Put new lens on:</p>
         <input
           class="button is-rounded column"
           name="date"
           type="date"
           v-model="queryDate"
         />
-        <p>Disposable in:</p>
+        <p class="p-wrap">Disposable in:</p>
         <!-- select -->
         <div class="select is-rounded">
             <select v-model="queryDay">
@@ -31,8 +31,6 @@
             <img src="../assets/images/add.svg" alt=""> 
           </router-link>
 
-        <!-- <button class="editButton button is-rounded" type="button" @click="fetchData()"> <img src="../assets/images/add.svg" alt=""> </button> -->
-        <!-- <button class="editButton button is-rounded"> <img src="../assets/images/clear.svg" alt=""> </button> -->
     </div>
   </div>
 </template>
@@ -83,10 +81,6 @@ export default {
   justify-content: center;
   margin: 0;
 }
-.edit h1 {
-  font-size: 2rem;
-  padding: 1rem 0 1rem; 
-}
 .button {
   width: 100%;
 }
@@ -95,6 +89,10 @@ export default {
   width: auto;
   padding: 10px !important;
   margin-top: 2rem;
+}
+.p-wrap {
+  font-size: 1.3rem;
+  padding-top: 1.5rem;
 }
 .select {
   width: 100%;

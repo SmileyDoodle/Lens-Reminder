@@ -6,14 +6,25 @@
 
 <script>
 var ProgressBar = require('progressbar.js');
+import moment from 'moment';
 
 export default {
     name: 'CircleAnimation',
+    data() {
+      return {
+        currentDate: ""
+      }
+    },
     methods: {
         createCircle() {
-            var count = 0;
+            let count = 0;
+            this.currentDate = moment();
+            let date = moment(window.localStorage.getItem('date'));
+            let newDate = date.add(Number(window.localStorage.getItem('day')), "days");
+            const difference = newDate.diff(this.currentDate, 'days') + 1;
+
             if(window) {
-              count = window.localStorage.getItem('day');
+              count = Number(window.localStorage.getItem('day'));
             }
             
             var bar = new ProgressBar.Circle('#container', {
@@ -35,8 +46,8 @@ export default {
                 circle.path.setAttribute('stroke-width', state.width);
 
                 var value = Math.round(circle.value() * count);
-                if (value === 0) {
-                circle.setText('');
+                if (value <= 0) {
+                circle.setText("Change");
                 } else {
                 circle.setText(value);
                 }
@@ -45,8 +56,12 @@ export default {
             });
             bar.text.style.fontFamily = '"Raleway", Helvetica, sans-serif';
             bar.text.style.fontSize = '2rem';
-
-            bar.animate(1.0);  // Number from 0.0 to 1.0
+            
+            if ((difference / count) > 0) {
+              bar.animate(difference / count); // Number from 0.0 to 1.0
+            } else {
+              bar.animate(0);
+            }  
         }
     },
     mounted() {

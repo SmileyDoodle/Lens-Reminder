@@ -32,6 +32,11 @@ Vue.use(VueRouter)
     path: '/edit',
     name: 'EditPage',
     component: () => import(/* webpackChunkName: "about" */ '../views/EditPage.vue')
+  },
+  {
+    path: '/about',
+    name: 'AboutPage',
+    component: () => import(/* webpackChunkName: "about" */ '../views/AboutPage.vue')
   }
 ]
 
