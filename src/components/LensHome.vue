@@ -7,7 +7,7 @@
       <div class="eyes-box ">
         <img class="eyes-wrap" src="../assets/images/eyes.png" alt="eyes">
       </div>
-      <div>
+      <div class="buttons-wrap">
           <router-link to="/login" class="loginButton button is-rounded">Login</router-link>
           <router-link to="/register" class="registerButton button is-rounded">Register</router-link>
       </div>
@@ -50,5 +50,22 @@ export default {
 .registerButton {
   color: #2f3a4d;
   width: 100%;
+}
+
+@media only screen and (min-width: 1024px) {
+.lensHome {
+  padding-top: 2rem;
+}
+.buttons-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}  
+.loginButton  {
+  width: 30%;
+}
+.registerButton  {
+  width: 30%;
+}
 }
 </style>

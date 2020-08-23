@@ -1,27 +1,28 @@
 <template>
   <div class="edit columns is-mobile is-centered">
     <div  class="column is-two-thirds">
-      <form>
-        <p class="p-wrap">Put new lens on:</p>
-        <input
-          class="button is-rounded column"
-          name="date"
-          type="date"
-          v-model="queryDate"
-        />
-        <p class="p-wrap">Disposable in:</p>
-        <!-- select -->
-        <div class="select is-rounded">
-            <select v-model="queryDay">
-                <option value="" style="display: none">days...</option>
-                <option value="1">1 days</option>
-                <option value="7">7 days</option>
-                <option value="14">14 days</option>
-                <option value="30">30 days</option>
-            </select>
-        </div>
-
-      </form>
+      <div class="inputs-button-wrap">
+        <form>
+          <p class="p-wrap">Put new lens on:</p>
+          <input
+            class="button is-rounded column"
+            name="date"
+            type="date"
+            v-model="queryDate"
+          />
+          <p class="p-wrap">Disposable in:</p>
+          <!-- select -->
+          <div class="select is-rounded">
+              <select v-model="queryDay">
+                  <option value="" style="display: none">days...</option>
+                  <option value="1">1 days</option>
+                  <option value="7">7 days</option>
+                  <option value="14">14 days</option>
+                  <option value="30">30 days</option>
+              </select>
+          </div>
+        </form>
+      </div>
           <router-link
             tag="button" 
             class="editButton button is-rounded"

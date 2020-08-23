@@ -89,6 +89,9 @@ header {
 .level-item {
   margin-bottom: 0 !important;
 }
+.level-item:first-child {
+  margin-right: 20px;
+}
 .navbar {
   background-color: #eaded2;
 }
@@ -102,5 +105,27 @@ header {
 }
 .isHidden {
   visibility: hidden;
+}
+
+@media only screen and (min-width: 1024px) {
+header {
+  display: flex;
+  align-items: center;
+}
+.navbar {
+  width: 50%;
+  margin: 0 auto
+}
+.navbar-brand {
+  width: 95%;
+}
+a.navbar-item:hover {
+  background-color: #eaded2;
+  color: #2f3a4d;
+}
+.level-item:first-child {
+  justify-content: end;
+  z-index: 1;
+}
 }
 </style>

@@ -72,7 +72,7 @@ export default {
 
 <style>
 #container {
-  margin: 20px;
+  margin: 20px auto;
   width: 200px;
   height: 200px;
   position: relative;

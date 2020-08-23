@@ -2,22 +2,24 @@
   <div class="login columns is-mobile is-centered">
     <div  class="column is-two-thirds">
       <h1>Hello</h1>
-      <form autocomplete="off">
-        <input
-          class="button is-rounded column"
-          name="email"
-          placeholder="Email"
-          v-model="email"
-        />
-        <input
-          class="button is-rounded column"
-          name="password"
-          type="password"
-          placeholder="Password"
-          v-model="password"
-        />
-        <LoginButton @clicked="login" class="loginButton"></LoginButton>
-      </form>
+      <div class="inputs-button-wrap">
+        <form autocomplete="off">
+          <input
+            class="button is-rounded column"
+            name="email"
+            placeholder="Email"
+            v-model="email"
+          />
+          <input
+            class="button is-rounded column"
+            name="password"
+            type="password"
+            placeholder="Password"
+            v-model="password"
+          />
+          <LoginButton @clicked="login" class="loginButton"></LoginButton>
+        </form>
+      </div>
       <p>Need an account? <router-link to="/register" class="account">Register</router-link> </p>
     </div>
   </div>
@@ -39,21 +41,33 @@ export default {
     }
   },
   methods: {
+
     login() {
-      firebase.auth().signInWithEmailAndPassword(this.email, this.password).
-        then (
-          user => {
-            console.log(user);
-            if (window.localStorage.getItem('date') === null || window.localStorage.getItem('day') === null) {
-              this.$router.push({ path: 'edit' });
-            } else {
-              this.$router.push({ path: 'information' });
+      firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
+        .then(() => {
+          // Existing and future Auth states are now persisted in the current
+          // session only. Closing the window would clear any existing state even
+          // if a user forgets to sign out.
+          // ...
+          // New sign-in will be persisted with session persistence.
+          return firebase.auth().signInWithEmailAndPassword(this.email, this.password).
+            then (
+              user => {
+                console.log(user);
+                if (window.localStorage.getItem('date') === null || window.localStorage.getItem('day') === null) {
+                  this.$router.push({ path: 'edit' });
+                } else {
+                  this.$router.push({ path: 'information' });
+                }
+              }
+            ),
+            err => {
+              console.log(err);
             }
-          }
-        ),
-        err => {
-          console.log(err);
-        }
+        })
+        .catch(err => {
+              console.log(err);
+            })
     }
   }
 }
@@ -77,5 +91,16 @@ input {
 }
 .loginButton {
   margin-bottom: 1rem !important;
+}
+
+@media only screen and (min-width: 1024px) {
+.inputs-button-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+form {
+  width: 30%;
+}
 }
 </style>

@@ -7,7 +7,7 @@
           <p>Put new: {{date}} </p>
           <p>Change: {{newDate}} </p>
       </div>
-      <router-link to="/edit" tag="button" class="info button is-rounded">
+      <router-link to="/edit" tag="button" class="info button is-rounded" id="editButton">
         Edit
       </router-link>
     </div>
@@ -54,7 +54,7 @@ export default {
   padding: 1rem 0 1rem; 
 }
 .info-wrap {
-    padding-top: 1.5rem;
+  padding-top: 1.5rem;
 }
 .info-wrap p {
  text-align: left;
@@ -65,5 +65,19 @@ export default {
  color: #fff;
  margin-top: 2rem;
  width: 100%;
+}
+
+@media only screen and (min-width: 1024px) {
+/* header {
+  display: flex;
+  align-items: center;
+} */
+.info-wrap {
+  width: 25%;
+  margin: 0 auto;
+}
+#editButton {
+  width: 30%;
+}
 }
 </style>
