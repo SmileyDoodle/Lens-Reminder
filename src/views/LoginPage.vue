@@ -37,11 +37,10 @@ export default {
   data() {
     return {
       email: "",
-      password: ""
+      password: "",
     }
   },
   methods: {
-
     login() {
       firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
         .then(() => {
@@ -69,6 +68,19 @@ export default {
               console.log(err);
             })
     }
+  },
+  created() {
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        if (window.localStorage.getItem('date') === null || window.localStorage.getItem('day') === null) {
+          this.$router.push({ path: 'edit' });
+        } else {
+          this.$router.push({ path: 'information' });
+        }
+      } else {
+        console.log("not logged in")
+      }
+    })
   }
 }
 </script>

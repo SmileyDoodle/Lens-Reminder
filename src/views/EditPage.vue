@@ -5,7 +5,7 @@
         <form>
           <p class="p-wrap">Put new lens on:</p>
           <input
-            class="button is-rounded column"
+            class="button is-rounded column dateInput"
             name="date"
             type="date"
             v-model="queryDate"
@@ -23,20 +23,27 @@
           </div>
         </form>
       </div>
-          <router-link
+          <button 
+            class="editButton button is-rounded"
+            @click="fetchData()"
+          >
+            <img src="../assets/images/add.svg" alt="add"> 
+          </button>
+          <!-- <router-link
             tag="button" 
             class="editButton button is-rounded"
             @click="fetchData()"
             to="/information"
           >
             <img src="../assets/images/add.svg" alt="add"> 
-          </router-link>
-
+          </router-link> -->
     </div>
   </div>
 </template>
 
 <script>
+import moment from 'moment';
+
 export default {
     name: 'InformationPage',
     data() {
@@ -45,33 +52,35 @@ export default {
             queryDate: "",
             queryDay: "",
             date: "",
-            day: ""
+            day: "",
+            today: ""
 
         }
     },
     methods: {
         fetchData() {
-          if (this.queryDate !== "" && this.queryDay !== "" ) {
+          if (this.queryDate !== "" && this.queryDay !== "") {
             this.date = this.queryDate;
             this.day = this.queryDay;
-            console.log("date:", this.date);
-            console.log("day:", this.day);
+            // console.log("date:", this.date);
+            // console.log("day:", this.day);
             const myStorage = window.localStorage;
             myStorage.setItem('date', this.date);
             myStorage.setItem('day', this.day);
-            
+            this.checkFuture()
           }
+        },
+        checkFuture() {
+            this.today = moment().unix();
+            const thisDate = moment(this.date).unix();
+            if (this.today >= thisDate) {
+              console.log("success");
+              this.$router.push({ path: 'information' });
+            } else {
+              console.log('error');
+              alert("The date cannot be in the future")
+            }
         }
-    },
-    mounted() {
-        this.fetchData();
-    },
-    updated: function () {
-        this.$nextTick(function () {
-            this.fetchData();
-            // Code that will run only after the
-            // entire view has been re-rendered
-        })
     }
 }
 </script>
@@ -100,5 +109,8 @@ export default {
 }
 select {
   width: 100%;
+}
+.dateInput {
+  line-height: 100%;
 }
 </style>
