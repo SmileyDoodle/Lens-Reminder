@@ -35,7 +35,6 @@ export default {
     newDate() {
       if(window) {
           var newDate = moment(this.date, 'MMMM Do').add(window.localStorage.getItem('day'), "days").format('MMMM Do');
-          // console.log('newDate', newDate);
           return newDate;
       }
     }

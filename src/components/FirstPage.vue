@@ -16,9 +16,5 @@ export default {
 </script>
 
 <style>
-/* .firstPage {
-  display: grid;
-  height: 100vh;
-  grid-template-rows: auto 1fr auto;
-} */
+
 </style>

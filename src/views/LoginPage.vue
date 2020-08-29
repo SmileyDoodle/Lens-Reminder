@@ -27,7 +27,9 @@
 
 <script>
 import LoginButton from '../components/LoginButton.vue'
-import firebase from 'firebase'
+import firebase from 'firebase/app'
+import 'firebase/auth' 
+import 'firebase/firestore'
 
 export default {
   name: 'LoginPage',
@@ -49,20 +51,7 @@ export default {
           // if a user forgets to sign out.
           // ...
           // New sign-in will be persisted with session persistence.
-          return firebase.auth().signInWithEmailAndPassword(this.email, this.password).
-            then (
-              user => {
-                console.log(user);
-                if (window.localStorage.getItem('date') === null || window.localStorage.getItem('day') === null) {
-                  this.$router.push({ path: 'edit' });
-                } else {
-                  this.$router.push({ path: 'information' });
-                }
-              }
-            ),
-            err => {
-              console.log(err);
-            }
+          return firebase.auth().signInWithEmailAndPassword(this.email, this.password)
         })
         .catch(err => {
               console.log(err);
@@ -77,8 +66,6 @@ export default {
         } else {
           this.$router.push({ path: 'information' });
         }
-      } else {
-        console.log("not logged in")
       }
     })
   }
