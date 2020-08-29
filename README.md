@@ -2,7 +2,7 @@
 
 Build with Vue.js, powered by Firebase (authentication, hosting).
 
-I usued local storage as a database. 
+I used local storage as a database. 
 
 <h1> Lighthouse best practices score: </h1>
 
