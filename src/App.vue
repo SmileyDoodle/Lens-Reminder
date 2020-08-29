@@ -38,7 +38,13 @@ body {
   color: #2c3e50;
   margin: 0;
   display: grid;
-  height: 93vh;
+  min-height: 93vh;
   grid-template-rows: auto 1fr auto;
+}
+
+@media only screen and (min-width: 1024px) {
+#app {
+  min-height: 100vh;
+}
 }
 </style>
