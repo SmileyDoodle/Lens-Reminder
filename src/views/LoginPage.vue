@@ -7,6 +7,7 @@
           <input
             class="button is-rounded column"
             name="email"
+            type="email"
             placeholder="Email"
             v-model="email"
           />
@@ -87,6 +88,7 @@ export default {
 }
 input {
   margin-bottom: 0.5rem !important;
+  -webkit-user-select: auto !important;
 }
 .loginButton {
   margin-bottom: 1rem !important;
